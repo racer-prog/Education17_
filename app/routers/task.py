@@ -1,30 +1,29 @@
 from fastapi import APIRouter
-from starlette.requests import Request
-from starlette.responses import HTMLResponse
-
-router = APIRouter(prefix="/task", tags="[task]")
 
 
-@router.get("/", response_class=HTMLResponse)
-async def all_tasks(request: Request):
+router_task = APIRouter(prefix="/task", tags=["task"])
+
+
+@router_task.get("/")
+async def all_tasks():
     pass
 
 
-@router.get("/task_id", response_class=HTMLResponse)
-async def task_by_id(request: Request):
+@router_task.get("/task_id")
+async def task_by_id():
     pass
 
 
-@router.post("/create", response_class=HTMLResponse)
-async def create_task(request: Request):
+@router_task.post("/create")
+async def create_task():
     pass
 
 
-@router.put("/update", response_class=HTMLResponse)
-async def update_task(request: Request):
+@router_task.put("/update")
+async def update_task():
     pass
 
 
-@router.delete("/delete", response_class=HTMLResponse)
-async def delete_task(request: Request):
+@router_task.delete("/delete")
+async def delete_task():
     pass

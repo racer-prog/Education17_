@@ -1,12 +1,14 @@
 from fastapi import FastAPI
-from starlette.requests import Request
-from starlette.responses import HTMLResponse
 
 app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug = True)
 
-from routers.task import *
-from routers.user import *
+from routers.task import router_task as task_router
+from routers.user import router_user as user_router
 
-@app.get("/", response_class=HTMLResponse)
-async def welcome(request: Request) -> dict:
+@app.get("/")
+async def welcome() -> dict:
     return {"message": "Welcome to Taskmanager"}
+
+app.include_router(task_router)
+app.include_router(user_router)
+

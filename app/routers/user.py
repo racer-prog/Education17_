@@ -1,29 +1,29 @@
-from fastapi import APIRouter, Request
-from starlette.responses import HTMLResponse
-
-router = APIRouter(prefix="/user", tags="[user]")
+from fastapi import APIRouter
 
 
-@router.get("/", response_class=HTMLResponse)
-async def all_users(request: Request):
+router_user = APIRouter(prefix="/user", tags=["user"])
+
+
+@router_user.get("/")
+async def all_users():
     pass
 
 
-@router.get("/user_id", response_class=HTMLResponse)
-async def user_by_id(request: Request):
+@router_user.get("/user_id")
+async def user_by_id():
     pass
 
 
-@router.post("/create", response_class=HTMLResponse)
-async def create_user(request: Request):
+@router_user.post("/create")
+async def create_user():
     pass
 
 
-@router.put("/update", response_class=HTMLResponse)
-async def update_user(request: Request):
+@router_user.put("/update")
+async def update_user():
     pass
 
 
-@router.delete("/delete", response_class=HTMLResponse)
-async def delete_user(request: Request):
+@router_user.delete("/delete")
+async def delete_user():
     pass
