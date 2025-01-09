@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from app.backend.db import Base
-from task import import *
+
 
 
 router_user = APIRouter(prefix="/user", tags=["user"])
@@ -32,13 +32,13 @@ async def update_user():
 async def delete_user():
     pass
 
+
 class User(Base):
-    __tablename__ = "tasks"
+    __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    content = Column(String)
-    priority = Column(Integer, default=0)
-    completed = Column(Boolean, default=False)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    username = Column(String)
+    firstname = Column(String)
+    lastname = Column(Integer, default=0)
+    age = Column(Integer)
     slug = Column(String, unique=True, index=True)
-    user = relationship("User", back_populates='tasks')
+    user = relationship("Task", back_populates='user')

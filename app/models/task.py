@@ -1,9 +1,8 @@
 from fastapi import APIRouter
 from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey
 from sqlalchemy.orm import relationship
-from app.backend.db import Base
-from user import import *
 
+from app.backend.db import Base
 
 
 router_task = APIRouter(prefix="/task", tags=["task"])
@@ -33,6 +32,7 @@ async def update_task():
 async def delete_task():
     pass
 
+
 class Task(Base):
     __tablename__ = "tasks"
     id = Column(Integer, primary_key=True, index=True)
@@ -43,4 +43,3 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     slug = Column(String, unique=True, index=True)
     user = relationship("User", back_populates='tasks')
-
